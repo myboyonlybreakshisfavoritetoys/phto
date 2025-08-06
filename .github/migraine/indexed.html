@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>i'll watch your life in pictures</title>
+    <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/VLgQvVh6/rain.jpg">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: 'NeueHaasGroteskDisp Pro', serif; /* Corrected font name */
+            background-image: url('https://renj.nekoweb.org/favicons/mesh-gradient%20(25).png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #ffffff;
+        }
+        @font-face {
+            font-family: 'NeueHaasGroteskDisp Pro'; /* Corrected font name */
+            /* You will need to provide the correct URL for this font */
+            src: url('https://example.com/fonts/NeueHaasGroteskDispPro.woff') format('woff'); /* Placeholder URL */
+        }
+        @font-face {
+            font-family: 'NeueHaasGroteskDisp Pro Blk'; /* Corrected font name for bold variant */
+            src: url('https://example.com/fonts/NeueHaasGroteskDispProBlk.woff') format('woff'); /* Placeholder URL */
+            font-weight: 900; /* Assuming 'Blk' is a heavy/black weight */
+        }
+        h1 {
+            font-family: 'NeueHaasGroteskDisp Pro Blk', serif; /* Using the bold variant */
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            background: url('https://renj.nekoweb.org/favicons/ddd.jfif') repeat;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        h1 a {
+            text-decoration: none;
+            color: #ffffff;
+            font-family: 'NeueHaasGroteskDisp Pro', serif; /* Corrected font name */
+            background: url('https://i.postimg.cc/SRLkNQB1/depositphotos-83882760-stock-photo-white-glitter-texture-background.jpg') repeat;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            text-decoration: none;
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        nav a {
+            text-decoration: none;
+            color: #ffffff;
+            font-family: 'NeueHaasGroteskDisp Pro', serif; /* Corrected font name */
+            background: url('https://i.postimg.cc/SRLkNQB1/depositphotos-83882760-stock-photo-white-glitter-texture-background.jpg') repeat;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        .slideshow-container {
+            max-width: 800px;
+            position: relative;
+            margin: auto;
+            overflow: hidden;
+        }
+        .slide-number {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        .slide {
+            display: none;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+        }
+        .slide img {
+            width: 100%;
+            max-height: 450px;
+            border-radius: 12px;
+        }
+        .slide-text {
+            margin-top: 10px;
+        }
+        .slideshow-controls {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .slideshow-controls button {
+            font-size: 24px;
+            padding: 10px 20px;
+            background-color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>my gallery</h1>
+    <nav>
+       
+    </nav>
+    <div class="slideshow-container">
+        <div class="slide-number" id="slide-number">1/11</div>
+        <div class="slide">
+            <img src="https://i.postimg.cc/cLgPMj8h/image.png" alt="Lover (Eras Tour Version) Skies">
+            <div class="slide-text"><b>lover (eras tour version) skies</b><br>taken june 7, 2023 by me.</div>
+        </div>                
+        <div class="slide">
+            <img src="https://i.postimg.cc/tTZzLQpv/image.png" alt="Flower (I don't know the name)">
+            <div class="slide-text"><b>flower (i don't know the name)</b><br>taken by me (forgot the date).</div>
+        </div>                
+        <div class="slide">
+            <img src="https://i.postimg.cc/W11gBL7m/image.png" alt="The Moon in my backyard">
+            <div class="slide-text"><b>the moon in my backyard</b><br>taken around april 2023 by me.</div>
+        </div>                
+        <div class="slideshow-controls">
+            <button class="prev-btn">&#8249;</button>
+            <button class="next-btn">&#8250;</button>
+        </div>
+    </div>
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const slideNumber = document.getElementById('slide-number');
+
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides.forEach((slide, index) => {
+                slide.style.display = index === n ? 'block' : 'none';
+            });
+            slideNumber.textContent = `${n + 1} out of ${slides.length}`;
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
